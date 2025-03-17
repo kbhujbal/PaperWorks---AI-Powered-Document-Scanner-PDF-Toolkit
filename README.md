@@ -1,0 +1,1 @@
+# QuickScan---AI-Powered-Document-Scanner
