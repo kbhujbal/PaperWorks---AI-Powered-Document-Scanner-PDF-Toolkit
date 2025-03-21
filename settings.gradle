@@ -1,0 +1,5 @@
+include ':app'
+
+include ':sticker'
+include ':scanlibrary'
+include ':scanner'

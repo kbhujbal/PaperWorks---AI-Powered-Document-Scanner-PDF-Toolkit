@@ -1,0 +1,803 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/ly_camera"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            //action bar and tab layout
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:elevation="5dp"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+                //action bar
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize">
+
+                    <ImageView
+                        android:id="@+id/iv_back_camera"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/_2sdp"
+                        android:onClick="onClick"
+                        android:padding="@dimen/_7sdp"
+                        android:src="@drawable/ic_back"
+                        app:tint="@color/black" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toEndOf="@+id/iv_back_camera"
+                        android:fontFamily="@font/inter_medium"
+                        android:text="@string/scanner"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_16sdp" />
+
+
+                    <ImageView
+                        android:id="@+id/iv_switch_flash"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/_8sdp"
+                        android:layout_toStartOf="@+id/iv_done"
+                        android:onClick="onClick"
+                        android:src="@drawable/ic_flash_off" />
+
+                    <ImageView
+                        android:id="@+id/iv_done"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/_6sdp"
+                        android:onClick="onClick"
+                        android:padding="@dimen/_6sdp"
+                        android:src="@drawable/ic_check_mark"
+                        app:tint="@color/black"
+                        android:visibility="gone" />
+                </RelativeLayout>
+
+                //tab layout
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_35sdp"
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:background="@color/white"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_document"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/inter_medium"
+                        android:gravity="center"
+                        android:onClick="onClick"
+                        android:text="@string/document"
+                        android:textColor="#585d64"
+                        android:textSize="@dimen/_11sdp" />
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/tv_book"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:fontFamily="@font/inter_medium"-->
+<!--                        android:gravity="center"-->
+<!--                        android:onClick="onClick"-->
+<!--                        android:text="@string/book"-->
+<!--                        android:textColor="#585d64"-->
+<!--                        android:textSize="@dimen/_11sdp" />-->
+
+                    <TextView
+                        android:id="@+id/tv_idcard"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/inter_medium"
+                        android:gravity="center"
+                        android:onClick="onClick"
+                        android:text="@string/idCard"
+                        android:textColor="#585d64"
+                        android:textSize="@dimen/_11sdp" />
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/tv_photo"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:fontFamily="@font/inter_medium"-->
+<!--                        android:gravity="center"-->
+<!--                        android:onClick="onClick"-->
+<!--                        android:text="@string/photo"-->
+<!--                        android:textColor="#585d64"-->
+<!--                        android:textSize="@dimen/_11sdp" />-->
+                </LinearLayout>
+
+                //tab indicator
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_2sdp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <View
+                        android:id="@+id/v_document"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@color/tab_indicator_color"
+                        android:visibility="invisible" />
+
+<!--                    <View-->
+<!--                        android:id="@+id/v_book"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:background="@color/tab_indicator_color"-->
+<!--                        android:visibility="invisible" />-->
+
+                    <View
+                        android:id="@+id/v_idcard"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@color/tab_indicator_color"
+                        android:visibility="invisible" />
+
+<!--                    <View-->
+<!--                        android:id="@+id/v_photo"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:background="@color/tab_indicator_color"-->
+<!--                        android:visibility="invisible" />-->
+                </LinearLayout>
+            </LinearLayout>
+
+
+            //camera view along with other view
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+
+
+                //cameraview
+
+                <com.otaliastudios.cameraview.CameraView
+                    android:id="@+id/cameraView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:adjustViewBounds="true"
+                    android:background="@color/bg_color1"
+                    android:keepScreenOn="true"
+                    app:cameraAudio="off"
+                    app:cameraFacing="back"
+                    app:cameraFlash="auto"
+                    app:cameraGestureTap="autoFocus"
+                    app:cameraWhiteBalance="auto" />
+
+                //book View
+                <RelativeLayout
+                    android:id="@+id/rl_book_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/book_view"
+                    android:visibility="gone">
+
+                    //horizontal dash line
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="15dp"
+                        android:layout_centerInParent="true"
+                        android:layout_marginStart="55dp"
+                        android:background="@drawable/horizontal_dash_line"
+                        android:layerType="software" />
+
+<!--                    A | B-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/inter_regular"
+                            android:gravity="center"
+                            android:rotation="90"
+                            android:text="A"
+                            android:textColor="#4a000000"
+                            android:textSize="@dimen/_65sdp" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/inter_regular"
+                            android:gravity="center"
+                            android:rotation="90"
+                            android:text="B"
+                            android:textColor="#4a000000"
+                            android:textSize="@dimen/_65sdp" />
+                    </LinearLayout>
+
+                    //Note on book tab
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:background="@drawable/info_bg">
+
+                        <ImageView
+                            android:id="@+id/info_img"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:padding="@dimen/_6sdp"
+                            android:src="@drawable/ic_error_black_24dp"
+                            app:tint="@color/colorAccent" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toEndOf="@+id/info_img"
+                            android:fontFamily="@font/inter_medium"
+                            android:padding="@dimen/_6sdp"
+                            android:text="@string/please_hold_the_device_horizontally"
+                            android:textColor="#FFF"
+                            android:textSize="@dimen/_10sdp" />
+                    </RelativeLayout>
+                </RelativeLayout>
+
+                // id card view
+                <RelativeLayout
+                    android:id="@+id/rl_idcard_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="gone">
+
+                    //square line
+                    <ImageView
+                        android:id="@+id/id_card_img"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_centerInParent="true"
+                        android:layout_margin="@dimen/_25sdp"
+                        android:background="@drawable/square_line" />
+
+                    //text(front/back)
+                    <TextView
+                        android:id="@+id/tv_id_card"
+                        android:layout_width="@dimen/_80sdp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_margin="@dimen/_35sdp"
+                        android:background="@drawable/idcard_bg"
+                        android:gravity="center"
+                        android:padding="@dimen/_5sdp"
+                        android:text="Front Side"
+                        android:textColor="#FFF"
+                        android:textSize="@dimen/_11sdp"
+                        android:visibility="gone" />
+                </RelativeLayout>
+            </RelativeLayout>
+
+            //bottom view(gallery/capture icon/flip camera)
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/toolbar_color"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:paddingTop="@dimen/_15sdp"
+                    android:paddingBottom="@dimen/_15sdp">
+
+                    <RelativeLayout
+                        android:id="@+id/scan_img_container"
+                        android:layout_width="@dimen/_45sdp"
+                        android:layout_height="@dimen/_45sdp"
+                        android:layout_alignParentLeft="true"
+                        android:gravity="center"
+                        android:visibility="invisible"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <com.templatemela.camscanner.document_view.roundshapeImageview
+                            android:id="@+id/iv_gallery"
+                            android:layout_width="@dimen/_45sdp"
+                            android:layout_height="@dimen/_45sdp"
+                            android:layout_centerVertical="true"
+                            android:scaleType="centerCrop"
+                            android:src="@color/white" />
+
+                        <TextView
+                            android:id="@+id/image_count"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_toEndOf="@+id/iv_gallery"
+                            android:background="@drawable/rounded_corner"
+                            android:gravity="center"
+                            android:text="2"
+                            android:textSize="10sp" />
+                    </RelativeLayout>
+
+                    <ImageView
+                        android:id="@+id/iv_take_picture"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:onClick="onClick"
+                        android:src="@drawable/ic_capture" />
+
+                    <ImageView
+                        android:id="@+id/iv_done_scan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:onClick="onClick"
+                        android:padding="@dimen/_5sdp"
+                        android:visibility="gone"
+                        android:src="@drawable/ic_check_mark" />
+                    <ImageView
+                        android:id="@+id/iv_done_scan_disable"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:onClick="onClick"
+                        android:padding="@dimen/_5sdp"
+                        android:src="@drawable/ic_check_disable" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    //crop layout(with rotate/ current filter/ retake/continue button)
+    <LinearLayout
+        android:id="@+id/ly_crop"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/bg_color1"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            //action bar
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@color/white">
+
+                <ImageView
+                    android:id="@+id/iv_back_crop"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/_2sdp"
+                    android:onClick="onClick"
+                    android:padding="@dimen/_7sdp"
+                    android:src="@drawable/ic_back" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toEndOf="@+id/iv_back_crop"
+                    android:fontFamily="@font/inter_medium"
+                    android:text="Crop Document"
+                    android:layout_marginLeft="@dimen/_8sdp"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_15sdp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                //middle crop view and image
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_above="@+id/ly_bottom"
+                    android:layout_margin="@dimen/_12sdp"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/iv_full_crop"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom|right|center_vertical|center_horizontal|center|end"
+                        android:onClick="onClick"
+                        android:layout_marginRight="@dimen/_5sdp"
+                        android:layout_marginBottom="@dimen/_5sdp"
+                        android:src="@drawable/ic_full_screen" />
+
+                    <me.pqpo.smartcropperlib.view.CropImageView
+                        android:id="@+id/iv_card_crop"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:padding="@dimen/_12sdp"
+                        app:civLineColor="@color/light_txt_color"
+                        app:civMagnifierCrossColor="@color/light_txt_color"
+                        app:civPointColor="@color/light_txt_color"
+                        app:civPointFillAlpha="35"
+                        app:civPointFillColor="@color/light_txt_color"
+                        app:civShowEdgeMidPoint="true" />
+                </FrameLayout>
+
+                //bottom view
+                <LinearLayout
+                    android:id="@+id/ly_bottom"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:background="@color/toolbar_color"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:paddingTop="@dimen/_12sdp"
+                    android:paddingBottom="@dimen/_15sdp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/_10sdp"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:id="@+id/ly_rotate_doc"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/_7sdp"
+                            android:onClick="onClick"
+                            android:orientation="vertical"
+                            android:padding="@dimen/_5sdp">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                app:tint="@color/bg_color1"
+                                android:src="@drawable/ic_rotate_doc" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:fontFamily="@font/inter_regular"
+                                android:text="Rotate Doc"
+                                android:layout_marginTop="@dimen/_3sdp"
+                                android:textColor="@color/bg_color1"
+                                android:textSize="@dimen/_12sdp" />
+                        </LinearLayout>
+
+                        //current filter
+                        <LinearLayout
+                            android:id="@+id/ly_current_filter"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_7sdp"
+                            android:onClick="onClick"
+                            android:orientation="vertical"
+                            android:padding="@dimen/_5sdp">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:src="@drawable/ic_current_filter" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:fontFamily="@font/inter_regular"
+                                android:text="Current Filter"
+                                android:layout_marginTop="@dimen/_3sdp"
+                                android:textColor="@color/bg_color1"
+                                android:textSize="@dimen/_12sdp" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/iv_retake"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:onClick="onClick"
+                            android:textSize="@dimen/_13sdp"
+                            android:fontFamily="@font/inter_regular"
+                            android:textColor="@color/black"
+                            android:text="@string/retake"
+                            android:background="@drawable/white_bg"
+                            android:padding="@dimen/_5sdp"
+                            android:layout_marginLeft="@dimen/_8sdp"
+                            android:layout_marginRight="@dimen/_5sdp"
+                            android:gravity="center" />
+                        <TextView
+                            android:id="@+id/iv_continue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:onClick="onClick"
+                            android:textSize="@dimen/_13sdp"
+                            android:background="@drawable/white_bg"
+                            android:fontFamily="@font/inter_regular"
+                            android:textColor="@color/black"
+                            android:text="@string/continue1"
+                            android:padding="@dimen/_5sdp"
+                            android:layout_marginLeft="@dimen/_5sdp"
+                            android:layout_marginRight="@dimen/_8sdp"
+                            android:gravity="center" />
+
+                    </LinearLayout>
+                </LinearLayout>
+            </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    //filter layout with(original/color/sharp black/OCV black)
+    <LinearLayout
+        android:id="@+id/ly_filter"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/bg_color1"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            //action bar
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@color/white">
+
+                <ImageView
+                    android:id="@+id/iv_back_filter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/_2sdp"
+                    android:onClick="onClick"
+                    android:padding="@dimen/_7sdp"
+                    android:src="@drawable/ic_back" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toEndOf="@+id/iv_back_filter"
+                    android:fontFamily="@font/inter_medium"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:text="Current Filter"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_15sdp" />
+
+                <ImageView
+                    android:id="@+id/iv_done_filter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="@dimen/_7sdp"
+                    android:onClick="onClick"
+                    android:padding="@dimen/_6sdp"
+                    android:src="@drawable/ic_check_mark" />
+            </RelativeLayout>
+
+            //photoview and bottom view
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                //photoview
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_above="@+id/ly_bottom_filter"
+                    android:layout_centerInParent="true"
+                    android:layout_margin="@dimen/_15sdp">
+
+                    <com.github.chrisbanes.photoview.PhotoView
+                        android:id="@+id/iv_card_filter"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_centerInParent="true" />
+                </RelativeLayout>
+
+                //bottom view
+                <LinearLayout
+                    android:id="@+id/ly_bottom_filter"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:background="@color/toolbar_color"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:paddingTop="@dimen/_15sdp"
+                    android:paddingBottom="@dimen/_15sdp">
+                    //original
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/iv_original"
+                            android:layout_width="@dimen/_30sdp"
+                            android:layout_height="@dimen/_32sdp"
+                            android:background="@drawable/filter_selection_bg"
+                            android:fontFamily="@font/inter_medium"
+                            android:gravity="center"
+                            android:onClick="onClick"
+                            android:text="O"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_18sdp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:fontFamily="@font/inter_medium"
+                            android:text="@string/original"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_10sdp" />
+
+                    </LinearLayout>
+                    //color
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/iv_color"
+                            android:layout_width="@dimen/_30sdp"
+                            android:layout_height="@dimen/_32sdp"
+                            android:background="@drawable/filter_bg"
+                            android:fontFamily="@font/inter_medium"
+                            android:gravity="center"
+                            android:onClick="onClick"
+                            android:text="C"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_18sdp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:fontFamily="@font/inter_medium"
+                            android:text="@string/color"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_10sdp" />
+
+                    </LinearLayout>
+
+                    //sharp black
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/iv_sharp_black"
+                            android:layout_width="@dimen/_30sdp"
+                            android:layout_height="@dimen/_32sdp"
+                            android:background="@drawable/filter_bg"
+                            android:fontFamily="@font/inter_medium"
+                            android:gravity="center"
+                            android:onClick="onClick"
+                            android:text="S"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_18sdp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:fontFamily="@font/inter_medium"
+                            android:text="@string/sharpBlack"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_10sdp" />
+
+                    </LinearLayout>
+
+                    //ocv black
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/iv_ocv_black"
+                            android:layout_width="@dimen/_30sdp"
+                            android:layout_height="@dimen/_32sdp"
+                            android:background="@drawable/filter_bg"
+                            android:fontFamily="@font/inter_medium"
+                            android:gravity="center"
+                            android:onClick="onClick"
+                            android:text="B"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_18sdp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:fontFamily="@font/inter_medium"
+                            android:text="@string/ocvBlack"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_10sdp" />
+
+                    </LinearLayout>
+                </LinearLayout>
+            </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="@dimen/_45sdp"
+        android:layout_height="@dimen/_45sdp"
+        android:layout_centerInParent="true"
+        android:visibility="gone" />
+</RelativeLayout>

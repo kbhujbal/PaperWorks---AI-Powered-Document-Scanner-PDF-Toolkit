@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.templatemela.camscanner">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    //state of internet(on/off)
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    //public external file
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+    <uses-feature
+        android:name="android.hardware.camera.autofocus"
+        android:required="false" />
+
+
+    //mechanism to indicate that your application needs to have the device stay on
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+    //billing
+    <uses-permission android:name="com.android.vending.BILLING" />
+
+    //rtl -> right to left (arbic ,urdu)
+    //cleartext is any transmitted or stored information that is not encrypted
+    //when app communicate with server us8ng a cleartext network traffic such as HTTP ,it could raise a risk
+    <application
+        android:allowBackup="true"
+        android:hardwareAccelerated="true"
+        android:largeHeap="true"
+        android:requestLegacyExternalStorage="true"
+        android:usesCleartextTraffic="true">
+
+
+
+<!--                    android:authorities="com.templatemela.camscanner.provider"-->
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.templatemela.camscanner.provider"
+            android:exported="false"
+            android:grantUriPermissions="true"
+            tools:replace="android:authorities">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths"
+                tools:replace="android:resource" />
+        </provider>
+
+
+        <activity android:name="com.templatemela.camscanner.activity.BaseActivity" />
+        <activity
+            android:name=".activity.SplashActivity"
+            android:screenOrientation="portrait">
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+        </activity>
+        <activity
+            android:name="com.templatemela.camscanner.activity.MainActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.templatemela.camscanner.activity.ScannerActivity"
+            android:screenOrientation="portrait" />
+<!--        <activity-->
+<!--            android:name="com.yalantis.ucrop.UCropActivity"-->
+<!--            android:theme="@style/uCropStyle"-->
+<!--            android:screenOrientation="portrait" />-->
+        <activity
+            android:name="com.templatemela.camscanner.activity.IDCardPreviewActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.templatemela.camscanner.activity.CropDocumentActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.templatemela.camscanner.activity.CurrentFilterActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.templatemela.camscanner.activity.SavedDocumentActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.templatemela.camscanner.activity.DocumentEditorActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustNothing" />
+        <activity
+            android:name="com.templatemela.camscanner.activity.SavedEditDocumentActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.templatemela.camscanner.activity.SavedDocumentPreviewActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.templatemela.camscanner.activity.NoteActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.templatemela.camscanner.activity.ImageToTextActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.templatemela.camscanner.activity.GroupDocumentActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.templatemela.camscanner.activity.PDFViewerActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.templatemela.camscanner.activity.QRGenerateActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.templatemela.camscanner.activity.QRReaderActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.templatemela.camscanner.activity.PrivacyPolicyActivity"
+            android:screenOrientation="portrait" />
+
+        <meta-data
+            android:name="com.google.android.gms.vision.DEPENDENCIES"
+            android:value="ocr" />
+<!--        <meta-data-->
+<!--            android:name="com.google.android.gms.ads.APPLICATION_ID"-->
+<!--            android:value="@string/admob_app_id" />-->
+
+    </application>
+
+</manifest>

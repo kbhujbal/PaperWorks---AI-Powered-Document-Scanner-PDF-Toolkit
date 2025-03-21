@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/docLayout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_150sdp"
+        android:layout_margin="@dimen/_6sdp">
+
+        //round image view
+        <com.templatemela.camscanner.document_view.roundshapeImageview
+            android:id="@+id/iv_doc"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_150sdp"
+            android:scaleType="centerCrop" />
+
+        //page no and three dot(bottom view)
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_33sdp"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/bottom_ly_bg">
+
+            <TextView
+                android:id="@+id/tv_doc_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/_7sdp"
+                android:layout_toStartOf="@+id/iv_note"
+                android:fontFamily="@font/inter_medium"
+                android:singleLine="true"
+                android:text="Page  1"
+                android:textColor="#FFFFFF"
+                android:textSize="@dimen/_12sdp" />
+
+            //if note is assign to the image then this will be visible
+            <ImageView
+                android:id="@+id/iv_note"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/_3sdp"
+                android:layout_toStartOf="@+id/iv_doc_item_more"
+                android:src="@drawable/ic_note"
+                app:tint="#FFFFFF"
+                android:visibility="gone" />
+
+            //three dot
+            <ImageView
+                android:id="@+id/iv_doc_item_more"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:paddingStart="@dimen/_12sdp"
+                android:paddingTop="@dimen/_7sdp"
+                android:paddingEnd="@dimen/_12sdp"
+                android:paddingBottom="@dimen/_7sdp"
+                android:src="@drawable/ic_more"
+                app:tint="#FFFFFF" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+    //new scan layout
+    <RelativeLayout
+        android:id="@+id/newScanLayout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_150sdp"
+        android:background="@drawable/rounded_border_bg"
+        android:visibility="gone"
+        android:layout_margin="@dimen/_6sdp">
+
+        <com.templatemela.camscanner.document_view.roundshapeImageview
+            android:id="@+id/iv_cam_doc"
+            android:layout_width="@dimen/_30sdp"
+            android:src="@drawable/camera_plus_outline"
+            android:layout_centerInParent="true"
+            android:layout_height="@dimen/_30sdp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/_7sdp"
+            android:layout_below="@+id/iv_cam_doc"
+            android:fontFamily="@font/inter_medium"
+            android:singleLine="true"
+            android:text="@string/tapToAddNew"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/_12sdp" />
+    </RelativeLayout>
+</LinearLayout>
